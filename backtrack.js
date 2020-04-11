@@ -25,6 +25,17 @@ var impossible = {},
   impossiblearray, leftout = 81;
 $("#reset").click(deleteall);
 $("#solve").click(solve);
+$("td input").keypress(limit);
+$("td input").keyup(limit);
+
+function limit() {
+  if (parseInt($(this).val()) > 9) {
+    $(this).val(9);
+  }
+  if (parseInt($(this).val()) < 1) {
+    $(this).val(1);
+  }
+}
 
 function deleteall() {
   $("td input").val("");
@@ -109,13 +120,13 @@ function validate(i, row, col, grid) {
 function solve(x) {
   refreshque()
   duplicatearray();
-    if (questionvalid()) {
-      if (solveSudoku()) {
-        alert("SOLVED!!");
-        refreshans()
-      } else {
-        alert("No solution found!");
-      }
+  if (questionvalid()) {
+    if (solveSudoku()) {
+      alert("SOLVED!!");
+      refreshans()
+    } else {
+      alert("No solution found!");
+    }
   } else {
     alert("invalid QUESTION!");
   }
