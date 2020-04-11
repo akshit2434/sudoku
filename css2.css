@@ -3,31 +3,37 @@ body {
 }
 
 table {
-  min-height: 72vh;
-  min-width: 72vh;
+  height: calc(72vh+7px);
+  margin: 0 auto;
+  width: calc(72vh+7px);
   border: 5px solid white;
   padding: 0;
   background-color: black;
 }
 
 #content {
-  left: 50%;
+  /* left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+  height: 100%;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   position: absolute;
   background-color: black;
 }
 
 #btns {
-  left: 50%;
+  /* left: 50%; */
   /* top: 50%; */
-  transform: translate(-50%, 0%);
-  width: 50vw;
+  /* transform: translate(-50%, 0%); */
+  /* min-width: 50vw; */
   align-items: center;
   justify-content: center;
   display: flex;
   /* border:2px solid white; */
-  position: absolute;
+  /* position: absolute; */
   margin-top: 1vh;
 }
 
@@ -49,7 +55,7 @@ table tr {
 table tr td {
   height: calc(8vh - 5px);
   width: calc(8vh - 5px);
-  border: 2px solid white;
+  border: 1px solid white;
   margin: 0;
 }
 
@@ -167,3 +173,8 @@ button {
     background-position: 33% 0%;
   }
 }
+
+/* Changing UI for mobile phones with bad UI*/
+/* @media () {
+
+} */
