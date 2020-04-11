@@ -70,7 +70,7 @@ table tr td input {
 
 table tr td input:focus {
   background-color: paleturquoise;
-  color: black;
+  color: black !important;
 }
 
 .row3 td, .row6 td {
@@ -115,7 +115,7 @@ button {
 
   50% {
     background-position: 68% 100%;
-    color: black;
+    color: black ;
   }
 
   100% {
