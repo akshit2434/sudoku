@@ -1,8 +1,13 @@
+body {
+  background-color: black;
+}
+
 table {
   min-height: 72vh;
   min-width: 72vh;
-  border: 5px solid black;
+  border: 5px solid white;
   padding: 0;
+  background-color: black;
 }
 
 #content {
@@ -10,13 +15,20 @@ table {
   top: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
+  background-color: black;
 }
 
 #btns {
   left: 50%;
   /* top: 50%; */
   transform: translate(-50%, 0%);
+  width: 50vw;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  /* border:2px solid white; */
   position: absolute;
+  margin-top: 1vh;
 }
 
 #btns button {
@@ -31,13 +43,13 @@ table tr {
   /* height: 8vh; */
   margin: 0;
   /* width:72vh; */
-  border: 5px solid black;
+  border: 5px solid white;
 }
 
 table tr td {
   height: calc(8vh - 5px);
   width: calc(8vh - 5px);
-  border: 2px solid black;
+  border: 2px solid white;
   margin: 0;
 }
 
@@ -46,23 +58,27 @@ table tr td input {
   width: calc(8vh - 5px);
   margin: 0;
   font-size: 5vh;
+  color: white;
   text-align: center;
   align-items: center;
+  background-color: black;
   border: 0;
   cursor: crosshair;
   font-family: Tw Cen MT;
+  transition: all ease 1s;
 }
 
 table tr td input:focus {
   background-color: paleturquoise;
+  color: black;
 }
 
 .row3 td, .row6 td {
-  border-bottom: 5px solid black;
+  border-bottom: 5px solid white;
 }
 
 .t3, .t6 {
-  border-right: 5px solid black;
+  border-right: 5px solid white;
 }
 
 #progress {
@@ -73,4 +89,81 @@ table tr td input:focus {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+button {
+  height: 5vh;
+  font-size: 3vh;
+  background: rgb(0, 96, 100);
+  display: inline;
+  color: white;
+  border-radius: 5vh;
+  cursor: pointer;
+  background: linear-gradient(167deg, #126636, #7cc0de);
+  background-size: 400% 400%;
+  -webkit-animation: movegradient 3s ease infinite;
+  -moz-animation: movegradient 3s ease infinite;
+  -o-animation: movegradient 3s ease infinite;
+  animation: movegradient 3s ease infinite;
+  border: 0;
+}
+
+@-webkit-keyframes movegradient {
+  0% {
+    background-position: 33% 0%;
+  }
+
+  50% {
+    background-position: 68% 100%;
+    color: black;
+  }
+
+  100% {
+    background-position: 33% 0%;
+  }
+}
+
+@-moz-keyframes movegradient {
+  0% {
+    background-position: 33% 0%;
+  }
+
+  50% {
+    background-position: 68% 100%;
+    color: black;
+  }
+
+  100% {
+    background-position: 33% 0%;
+  }
+}
+
+@-o-keyframes movegradient {
+  0% {
+    background-position: 33% 0%;
+  }
+
+  50% {
+    background-position: 68% 100%;
+    color: black;
+  }
+
+  100% {
+    background-position: 33% 0%;
+  }
+}
+
+@keyframes movegradient {
+  0% {
+    background-position: 33% 0%;
+  }
+
+  50% {
+    background-position: 68% 100%;
+    color: black;
+  }
+
+  100% {
+    background-position: 33% 0%;
+  }
 }

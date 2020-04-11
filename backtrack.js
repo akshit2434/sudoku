@@ -106,16 +106,16 @@ function validate(i, row, col, grid) {
   return true;
 }
 
-function solve() {
+function solve(x) {
   refreshque()
   duplicatearray();
-  if (questionvalid()) {
-    if (solveSudoku()) {
-      alert("SOLVED!!");
-      refreshans()
-    } else {
-      alert("No solution found!");
-    }
+    if (questionvalid()) {
+      if (solveSudoku()) {
+        alert("SOLVED!!");
+        refreshans()
+      } else {
+        alert("No solution found!");
+      }
   } else {
     alert("invalid QUESTION!");
   }
