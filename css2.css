@@ -1,0 +1,76 @@
+table {
+  min-height: 72vh;
+  min-width: 72vh;
+  border: 5px solid black;
+  padding: 0;
+}
+
+#content {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+#btns {
+  left: 50%;
+  /* top: 50%; */
+  transform: translate(-50%, 0%);
+  position: absolute;
+}
+
+#btns button {
+  display: inline-block;
+}
+
+#btns button:nth-child(2) {
+  margin-left: 10px;
+}
+
+table tr {
+  /* height: 8vh; */
+  margin: 0;
+  /* width:72vh; */
+  border: 5px solid black;
+}
+
+table tr td {
+  height: calc(8vh - 5px);
+  width: calc(8vh - 5px);
+  border: 2px solid black;
+  margin: 0;
+}
+
+table tr td input {
+  height: calc(8vh - 5px);
+  width: calc(8vh - 5px);
+  margin: 0;
+  font-size: 5vh;
+  text-align: center;
+  align-items: center;
+  border: 0;
+  cursor: crosshair;
+  font-family: Tw Cen MT;
+}
+
+table tr td input:focus {
+  background-color: paleturquoise;
+}
+
+.row3 td, .row6 td {
+  border-bottom: 5px solid black;
+}
+
+.t3, .t6 {
+  border-right: 5px solid black;
+}
+
+#progress {
+  height: 50px;
+  background-color: purple;
+  /* width:0; */
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
