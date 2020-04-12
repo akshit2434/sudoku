@@ -1,69 +1,66 @@
 body {
   background-color: black;
 }
-
+#loading{
+  z-index: 10;
+  background-color: white;
+  position: absolute;
+  height:100%;
+  width: 100%;
+}
 table {
-  height: calc(72vh+7px);
-  margin: 0 auto;
-  width: calc(72vh+7px);
+  height:200px;
+  margin-left: 50px;
+  margin-top: 7px;
+  width:200px;
   border: 5px solid white;
   padding: 0;
   background-color: black;
 }
 
+
 #content {
-  /* left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%); */
   height: 100%;
   width: 100%;
+  padding-top: 10px;
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   position: absolute;
   background-color: black;
 }
 
 #btns {
-  /* left: 50%; */
-  /* top: 50%; */
-  /* transform: translate(-50%, 0%); */
-  /* min-width: 50vw; */
   align-items: center;
-  justify-content: center;
+  margin-left: 50px;
+  flex-direction: column;
   display: flex;
-  /* border:2px solid white; */
-  /* position: absolute; */
   margin-top: 1vh;
 }
 
 #btns button {
   display: inline-block;
+  font-family: monospace;
 }
 
 #btns button:nth-child(2) {
-  margin-left: 10px;
+  margin-top: 10px;
 }
 
 table tr {
-  /* height: 8vh; */
   margin: 0;
-  /* width:72vh; */
-  border: 5px solid white;
 }
 
 table tr td {
-  height: calc(8vh - 5px);
-  width: calc(8vh - 5px);
-  border: 1px solid white;
+  border: 1px solid grey;
   margin: 0;
 }
 
 table tr td input {
-  height: calc(8vh - 5px);
-  width: calc(8vh - 5px);
+  height: 50px;
+  width: 50px;
   margin: 0;
-  font-size: 5vh;
+  font-size: 3em;
   color: white;
   text-align: center;
   align-items: center;
@@ -78,19 +75,22 @@ table tr td input:focus {
   background-color: paleturquoise;
   color: black !important;
 }
+table tr td input:hover {
+  background-color: rgba(175, 238, 238, 0.65);
+  color: black !important;
+}
 
 .row3 td, .row6 td {
-  border-bottom: 5px solid white;
+  border-bottom: 2px solid gainsboro;
 }
 
 .t3, .t6 {
-  border-right: 5px solid white;
+  border-right: 2px solid gainsboro;
 }
 
 #progress {
   height: 50px;
   background-color: purple;
-  /* width:0; */
   display: none;
   position: absolute;
   left: 50%;
@@ -98,12 +98,13 @@ table tr td input:focus {
 }
 
 button {
-  height: 5vh;
-  font-size: 3vh;
+  min-height: 41px;
+  min-width: 273px;
+  font-size: 150%;
   background: rgb(0, 96, 100);
   display: inline;
   color: white;
-  border-radius: 5vh;
+  border-radius: 5px;
   cursor: pointer;
   background: linear-gradient(167deg, #126636, #7cc0de);
   background-size: 400% 400%;
@@ -183,7 +184,7 @@ button {
 /* Changing UI for mobile phones with bad UI*/
 @media screen and (max-width: 500px) {
   table {
-    height: calc(45vh+7px);
-    width: calc(45vh+7px);
+    /* height: calc(45vh+7px); */
+    /* width: calc(45vh+7px); */
   }
 }
