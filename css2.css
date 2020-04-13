@@ -134,6 +134,7 @@ td:after {
   margin-top: 100%;
 }
 td input {
+  border-radius: 0;
   width: 100%;
   position: absolute;
   top: 0;
