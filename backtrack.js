@@ -44,7 +44,7 @@ function limit() {
 function deleteall() {
   $("td input").val("");
   $("td input").css("color", "white");
-  $("td input").css("font-size", "3em");
+  $("td input").css("font-size", "4vw");
   refreshque();
 }
 
@@ -68,11 +68,11 @@ function refreshans() {
         $("td:eq(" + i + ") input").val("");
       } else {
         $("td:eq(" + i + ") input").val(solved[Math.floor(i / 9)][i % 9]);
-        $("td:eq(" + i + ") input").css("font-size", "3em");
+        $("td:eq(" + i + ") input").css("font-size", "4vw");
       }
       document.querySelectorAll("td input")[i].style.color = "#7cc0de";
       if (solved[Math.floor(i / 9)][i % 9].length >= 2) {
-        $("td:eq(" + i + ") input").css("font-size", "3em");
+        $("td:eq(" + i + ") input").css("font-size", "4vw");
         $("td:eq(" + i + ") input").val(solved[Math.floor(i / 9)][i % 9].substr(1, solved[Math.floor(i / 9)][i % 9].length - 2));
         $("td:eq(" + i + ") input").css("overflow", "scroll");
       }
