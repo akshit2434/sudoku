@@ -219,6 +219,9 @@ td input {
     width: 27%;
     position: relative;
   }
+  td input{
+    width: 100%;
+  }
   #content{
     flex-direction: column;
   }
