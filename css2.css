@@ -122,7 +122,7 @@ button {
 
 /* MAKING THE TABLE SQUARE */
 table {
-  width: 42%;
+  /* width: 42%; */
 }
 td {
   width: 14%;
@@ -211,7 +211,7 @@ td input {
 /* Changing UI for mobile phones with bad UI*/
 @media screen and (max-width: 650px) {
   table {
-    width: 63%;
+    /* width: 63%; */
     margin-left:50%;
     transform: translateX(-50%);
   }
