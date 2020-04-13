@@ -209,7 +209,11 @@ td input {
 }
 
 /* Changing UI for mobile phones with bad UI*/
+<<<<<<< HEAD
 @media screen and (max-width: 650px) {
+=======
+@media screen and (max-width: 770px) {
+>>>>>>> 924149fd91c9b835d1fa7f370dae32a0461be425
   table {
     width: 63%;
     margin-left:50%;
