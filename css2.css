@@ -1,3 +1,7 @@
+*{
+  box-sizing: border-box;
+}
+
 body {
   background-color: black;
 }
@@ -10,23 +14,26 @@ body {
   width: 100%;
 }
 
-table {
+table:nth-child(1) {
   margin-left: 50px;
-  margin-top: 7px;
+  margin-top: 17px;
   /* height:30vw; */
   /* width:30vw; */
   border: 5px solid white;
   padding: 0;
-  table-layout: fixed;
+  table:nth-child(1)-layout: fixed;
   background-color: black;
 }
 
 #content {
   height: 100%;
   width: 100%;
-  padding-top: 10px;
+  margin-top: -7px;
+  position: absolute;
+  /* border: 2px solid yellow; */
+  /* padding-top: 10px; */
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: row;
   position: absolute;
   background-color: black;
@@ -34,9 +41,11 @@ table {
 
 #btns {
   align-items: center;
-  margin-left: 50px;
+  /* margin-left: 50px; */
   flex-direction: column;
   display: flex;
+  /* box-sizing: border-box; */
+  /* padding-left: 50px; */
   margin-top: 1vh;
 }
 
@@ -49,18 +58,18 @@ table {
   margin-top: 10px;
 }
 
-table tr {
+table:nth-child(1) tr {
   margin: 0;
 }
 
-table tr td {
+table:nth-child(1) tr td {
   border: 1px solid grey;
   margin: 0;
   /* width:3vw;/ */
   /* height: 3vw; */
 }
 
-table tr td input {
+table:nth-child(1) tr td input {
   /* height: 3vw; */
   /* width: 3vw; */
   margin: 0;
@@ -75,21 +84,21 @@ table tr td input {
   transition: all ease 1s;
 }
 
-table tr td input:focus {
-  background-color: paleturquoise;
+table:nth-child(1) tr td input:focus {
+  background-color: paleturquoise !important;
   color: black !important;
 }
 
-table tr td input:hover {
-  background-color: rgba(175, 238, 238, 0.65);
+table:nth-child(1) tr td input:hover {
+  background-color: rgba(175, 238, 238, 0.65) !important;
   color: black !important;
 }
 
-.row3 td, .row6 td {
+table:nth-child(1) .row3 td,table:nth-child(1) .row6 td {
   border-bottom: 2px solid gainsboro;
 }
 
-.t3, .t6 {
+table:nth-child(1) .t3,table:nth-child(1) .t6 {
   border-right: 2px solid gainsboro;
 }
 
@@ -120,20 +129,20 @@ button {
   border: 0;
 }
 
-/* MAKING THE TABLE SQUARE */
-table {
+/* MAKING THE table:nth-child(1) SQUARE */
+table:nth-child(1) {
   width: 42%;
 }
-td {
-  width: 14%;
+table:nth-child(1) td {
+  width: 10%;
   position: relative;
 }
-td:after {
+table:nth-child(1) td:after {
   content: '';
   display: block;
   margin-top: 100%;
 }
-td input {
+table:nth-child(1) td input {
   border-radius: 0;
   width: 100%;
   position: absolute;
@@ -142,6 +151,31 @@ td input {
   left: 0;
   right: 0;
 }
+#rightcol{
+  margin-top: 10px;
+  box-sizing: border-box;
+  display: flex;
+  /* border: 2px solid red; */
+  flex-direction: column;
+}
+#rightcol table{
+  margin-top: 2vw;
+  border-radius: 2vw;
+  border:3px solid paleturquoise;
+  background-color: paleturquoise;
+
+  /* height:50vh; */
+}
+#rightcol table td{
+  width: 10vw;
+  font-size: 3vw;
+  font-family: Tw Cen MT;
+  cursor:pointer;
+  height:8vw;
+  /* color:white; */
+  text-align: center;
+}
+
 
 @-webkit-keyframes movegradient {
   0% {
@@ -211,16 +245,16 @@ td input {
 
 /* Changing UI for mobile phones with bad UI*/
 @media screen and (max-width: 650px) {
-  table {
+  table:nth-child(1) {
     width: 81%;
     margin-left:50%;
     transform: translateX(-50%);
   }
-  td {
+  table td {
     width: 27%;
     position: relative;
   }
-  td input{
+  table td input{
     width: 100%;
   }
   #content{
@@ -232,5 +266,23 @@ td input {
   button{
     font-size:3vw;
     min-height: 4vw;
+  }
+  #rightcol table{
+    margin-top: 2vw;
+    border-radius: 2vw;
+    width:72vw;
+    border:3px solid paleturquoise;
+    background-color: paleturquoise;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  #rightcol table td{
+    width: 33%;
+    font-size: 5vw;
+    font-family: Tw Cen MT;
+    cursor:pointer;
+    height:12vw;
+    /* color:white; */
+    text-align: center;
   }
 }

@@ -24,27 +24,58 @@ var solved = [
 var impossible = {},
   impossiblearray, leftout = 81;
 
-$(document).ready($("#loading").css("display", "none"));
+$(document).ready(onload);
 $("#reset").click(deleteall);
 $("#solve").click(solve);
 $("td input").keypress(limit);
 $("td input").keyup(limit);
 
-function limit() {
-  if (parseInt($(this).val()) > 9) {
-    $(this).val(9);
+function limit(e) {
+  var x = e.which || e.keycode;
+  if (x == 16 || x == 9) {
+    // console.log("SHIFT?TAB found ");
+  } else {
+    // this.disabled = "disabled";
+    var lastval = $(this).val();
+    var edited = false;
+    if (parseInt($(this).val()) > 9) {
+      $(this).val(9);
+      edited = true;
+    }
+    if (parseInt($(this).val()) < 1) {
+      $(this).val(1);
+      edited = true;
+    }
+    if (parseInt($(this).val()) <= 9 && parseInt($(this).val()) > 0) {} else {
+      $(this).val('');
+      edited = true;
+    }
+    if (lastval != $(this).val()) {
+      edited = true;
+    }
+    if (!edited) {
+      for (var i = 0; i < 81; i++) {
+        if ($("td:eq(" + i + ") input").is($(this))) {
+          $("table:eq(0) input").blur();
+          $("td:eq(" + i + ") input").css("background-color", "black");
+          $("td:eq(" + (i + 1) + ") input").focus();
+          // console.log("focus found " + i);
+          break;
+        }
+      }
+    }
+    // this.disabled=false;
+    refreshque();
+    $(this).css("color", "white");
   }
-  if (parseInt($(this).val()) < 1) {
-    $(this).val(1);
-  }
-  refreshque();
-  $(this).css("color", "white");
 }
+
 
 function deleteall() {
   $("td input").val("");
   $("td input").css("color", "white");
   $("td input").css("font-size", "4vw");
+  lastfocus = $("table:eq(0) td:eq(0) input");
   refreshque();
 }
 
@@ -164,4 +195,81 @@ function solveSudoku() {
     }
   }
   return false;
+}
+
+function onload() {
+  $("#loading").css("display", "none");
+  // for(var i =0;i<9;i++){
+  $("table:eq(1) td:eq(0)").click(function() {
+    numpad(1);
+  });
+  $("table:eq(1) td:eq(1)").click(function() {
+    numpad(2);
+  });
+  $("table:eq(1) td:eq(2)").click(function() {
+    numpad(3);
+  });
+  $("table:eq(1) td:eq(3)").click(function() {
+    numpad(4);
+  });
+  $("table:eq(1) td:eq(4)").click(function() {
+    numpad(5);
+  });
+  $("table:eq(1) td:eq(5)").click(function() {
+    numpad(6);
+  });
+  $("table:eq(1) td:eq(6)").click(function() {
+    numpad(7);
+  });
+  $("table:eq(1) td:eq(7)").click(function() {
+    numpad(8);
+  });
+  $("table:eq(1) td:eq(8)").click(function() {
+    numpad(9);
+  });
+  $("table:eq(1) td:eq(9)").click(function() {
+    for (var i = 0; i < 81; i++) {
+      if ($("td:eq(" + i + ") input").is(lastfocus)) {
+        $("table:eq(0) input").blur();
+        $("td:eq(" + i + ") input").css("background-color", "black");
+        $("td:eq(" + (i - 1) + ") input").focus();
+        refreshque()
+        break;
+      }
+    }
+  });
+  $("table:eq(1) td:eq(10)").click(function() {
+    for (var i = 0; i < 81; i++) {
+      if ($("td:eq(" + i + ") input").is(lastfocus)) {
+        $("table:eq(0) input").blur();
+        $("td:eq(" + i + ") input").css("background-color", "black");
+        $("td:eq(" + (i + 1) + ") input").focus();
+        refreshque()
+        break;
+      }
+    }
+  });
+  $("table:eq(1) td:eq(11)").click(function() {
+    lastfocus.val("");
+    lastfocus.focus();
+    refreshque();
+  });
+  // }
+}
+var lastfocus = $("table:eq(0) td:eq(0) input");
+$("table:eq(0) input").focus(function() {
+  lastfocus = $(this);
+});
+$("table:eq(0) input").on("change", limit);
+
+function numpad(i) {
+  if (lastfocus) {
+    lastfocus.val(i);
+    lastfocus.trigger("change");
+    console.log("case1: " + i);
+  } else {
+    $("table:eq(0) td:eq(0) input").val(i);
+    $("table:eq(0) td:eq(0) input").trigger("change", limit);
+    console.log("case2: " + i);
+  }
 }
