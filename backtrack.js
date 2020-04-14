@@ -54,15 +54,8 @@ function limit(e) {
       edited = true;
     }
     if (!edited) {
-      for (var i = 0; i < 81; i++) {
-        if ($("td:eq(" + i + ") input").is($(this))) {
-          $("table:eq(0) input").blur();
-          $("td:eq(" + i + ") input").css("background-color", "black");
-          $("td:eq(" + (i + 1) + ") input").focus();
-          // console.log("focus found " + i);
-          break;
-        }
-      }
+      $("table:eq(0) input").blur();
+      $("table:eq(0) td:eq(" + (parseInt($($("table:eq(0) td input")).index(lastfocus)) + 1) + ") input").focus();
     }
     // this.disabled=false;
     refreshque();
@@ -228,26 +221,31 @@ function onload() {
     numpad(9);
   });
   $("table:eq(1) td:eq(9)").click(function() {
-    for (var i = 0; i < 81; i++) {
-      if ($("td:eq(" + i + ") input").is(lastfocus)) {
-        $("table:eq(0) input").blur();
-        $("td:eq(" + i + ") input").css("background-color", "black");
-        $("td:eq(" + (i - 1) + ") input").focus();
-        refreshque()
-        break;
-      }
-    }
+    // for (var i = 0; i < 81; i++) {
+    //   if ($("td:eq(" + i + ") input").is(lastfocus)) {
+    //     $("table:eq(0) input").blur();
+    //     $("td:eq(" + i + ") input").css("background-color", "black");
+    //     $("td:eq(" + (i - 1) + ") input").focus();
+    //     refreshque()
+    //     break;
+    //   }
+    // }
+    $("table:eq(0) input").blur();
+    $("table:eq(0) td:eq(" + (parseInt($($("table:eq(0) td input")).index(lastfocus)) - 1) + ") input").focus();
+
   });
   $("table:eq(1) td:eq(10)").click(function() {
-    for (var i = 0; i < 81; i++) {
-      if ($("td:eq(" + i + ") input").is(lastfocus)) {
-        $("table:eq(0) input").blur();
-        $("td:eq(" + i + ") input").css("background-color", "black");
-        $("td:eq(" + (i + 1) + ") input").focus();
-        refreshque()
-        break;
-      }
-    }
+    // for (var i = 0; i < 81; i++) {
+    //   if ($("td:eq(" + i + ") input").is(lastfocus)) {
+    //     $("table:eq(0) input").blur();
+    //     $("td:eq(" + i + ") input").css("background-color", "black");
+    //     $("td:eq(" + (i + 1) + ") input").focus();
+    //     refreshque()
+    //     break;
+    //   }
+    // }
+    $("table:eq(0) input").blur();
+    $("table:eq(0) td:eq(" + (parseInt($($("table:eq(0) td input")).index(lastfocus)) + 1) + ") input").focus();
   });
   $("table:eq(1) td:eq(11)").click(function() {
     lastfocus.val("");
