@@ -26,7 +26,7 @@ table:nth-child(1) {
 }
 
 #content {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   margin-top: -7px;
   position: absolute;
@@ -245,10 +245,19 @@ table:nth-child(1) td input {
 
 /* Changing UI for mobile phones with bad UI*/
 @media screen and (max-width: 650px) {
-  table:nth-child(1) {
+  body{
+    overflow: hidden;
+  }
+  table:nth-of-type(1) {
     width: 81%;
     margin-left:50%;
+    /* margin-top:40vw; */
+    /* position:absolute;
+    top:0; */
     transform: translateX(-50%);
+  }
+  #content{
+    /* border:3px solid green; */
   }
   table td {
     width: 27%;
@@ -259,15 +268,18 @@ table:nth-child(1) td input {
   }
   #content{
     flex-direction: column;
+    overflow: scroll;
   }
   #btns{
     margin-left: 0;
+    position: relative;
   }
   button{
     font-size:3vw;
     min-height: 4vw;
   }
   #rightcol table{
+    position: relative;
     margin-top: 2vw;
     border-radius: 2vw;
     width:72vw;
