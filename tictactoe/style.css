@@ -114,3 +114,29 @@ body {
 #avatar .selected {
   background-color: #ff9800;
 }
+
+@media screen and (max-width:600px) {
+  #content table {
+    margin-top: 10px;
+    border-collapse: collapse;
+    width: 50vw;
+    height: 50vw;
+    margin: 0 auto;
+  }
+
+  #content table td {
+    font-size: 10vw;
+  }
+
+  #btns button {
+    border-radius: 1vw;
+    min-height: 5vw;
+    cursor: pointer;
+    min-width: 7.5vw;
+    font-size: 3vw;
+    background-color: #147dd4;
+    color: white;
+    font-family: monospace;
+    border: 0;
+  }
+}
