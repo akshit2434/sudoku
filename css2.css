@@ -246,7 +246,7 @@ table:nth-child(1) td input {
 /* Changing UI for mobile phones with bad UI*/
 @media screen and (max-width: 650px) {
   body{
-    overflow: hidden;
+    /* overflow: hidden; */
   }
   table:nth-of-type(1) {
     width: 81%;
@@ -268,7 +268,7 @@ table:nth-child(1) td input {
   }
   #content{
     flex-direction: column;
-    overflow: scroll;
+    /* overflow: scroll; */
   }
   #btns{
     margin-left: 0;
