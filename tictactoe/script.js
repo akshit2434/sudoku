@@ -9,15 +9,32 @@ var avatar = {
   ai: "X"
 };
 
+var level = "kid";
+
 $(document).ready(onload);
 $("#play").on("click", startGame);
 $("#reset").on("click", reset);
 $("#restart").on("click", restart)
-$("#X").click(function() {
+$("#X").click(function () {
   select('X')
 });
-$("#O").click(function() {
+$("#O").click(function () {
   select('O')
+});
+$("#silly").click(function () {
+  level = "silly";
+  reset();
+  startGame();
+});
+$("#kid").click(function () {
+  level = "kid";
+  reset();
+  startGame();
+});
+$("#pro").click(function () {
+  level = "pro";
+  reset();
+  startGame();
 });
 
 function select(what) {
@@ -59,12 +76,13 @@ function reset() {
 
 function setonclick() {
   for (let i = 0; i < 9; i++) {
-    $($(".cells")[i]).click(function() {
-      type(avatar.human, i);
-      if (!checkWinner()) {
-        playai();
-      } else {
-        gameOver();
+    $($(".cells")[i]).click(function () {
+      if (type(avatar.human, i)) {
+        if (!checkWinner()) {
+          playai();
+        } else {
+          gameOver();
+        }
       }
     });
     // $($(".cells")[i]).click(function() {
@@ -82,8 +100,13 @@ function disableonclick() {
 }
 
 function type(player, value) {
-  $($(".cells")[value]).html(player);
-  board[Math.floor((value) / 3)][(value) % 3] = player;
+  if ($($(".cells")[value]).html() == '') {
+    $($(".cells")[value]).html(player);
+    board[Math.floor((value) / 3)][(value) % 3] = player;
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function typeforai(vert, horz, value) {
@@ -93,6 +116,7 @@ function typeforai(vert, horz, value) {
 }
 
 function startGame() {
+  disableonclick();
   setonclick();
   if (avatar.ai == "X") {
     playai();
@@ -105,23 +129,24 @@ function playai() {
   let prevBoard = {};
   let bestScore = -Infinity;
   let bestMove = {};
-  loop:
-    for (var vert = 0; vert < 3; vert++) {
-      for (var horz = 0; horz < 3; horz++) {
-        if (board[vert][horz] == "") {
-          board[vert][horz] = avatar.ai;
-          let score = minimax(board, 0, false);
-          board[vert][horz] = "";
-          if (score > bestScore) {
-            bestScore = score;
-            bestMove = {
-              vert: vert,
-              horz: horz
-            }
+  for (var vert = 0; vert < 3; vert++) {
+    for (var horz = 0; horz < 3; horz++) {
+      if (board[vert][horz] == "") {
+        board[vert][horz] = avatar.ai;
+        let score = minimax(board, 0, false);
+        console.log(board);
+        console.log(score);
+        board[vert][horz] = "";
+        if (score > bestScore) {
+          bestScore = score;
+          bestMove = {
+            vert: vert,
+            horz: horz
           }
         }
       }
     }
+  }
   typeforai(bestMove.vert, bestMove.horz, avatar.ai);
   if (checkWinner()) {
     gameOver();
@@ -135,10 +160,18 @@ function minimax(board, depth, isMaximising) {
   if (result != null) {
     if (result == avatar.ai) {
       //ai won
-      return 100 - depth;
+      if (level != "silly") {
+        return 100 - depth;
+      } else {
+        return -100 + depth
+      }
     } else if (result == avatar.human) {
       //human won
-      return -100 + depth;
+      if (level != "silly") {
+        return -100 + depth;
+      } else {
+        return 100 - depth;
+      }
     } else if (result == "tie") {
       //TIE
       return 0
@@ -151,7 +184,7 @@ function minimax(board, depth, isMaximising) {
       for (var horz = 0; horz < 3; horz++) {
         if (board[vert][horz] == '') {
           board[vert][horz] = avatar.ai;
-          let score = minimax(board, depth + 1, true);
+          let score = minimax(board, depth + 1, level == "kid" ? true : false);
           board[vert][horz] = '';
           if (score > bestScore) {
             bestScore = score;
@@ -166,7 +199,7 @@ function minimax(board, depth, isMaximising) {
       for (var horz = 0; horz < 3; horz++) {
         if (board[vert][horz] == '') {
           board[vert][horz] = avatar.human;
-          let score = minimax(board, depth + 1, false);
+          let score = minimax(board, depth + 1, true);
           board[vert][horz] = '';
           if (score < bestScore) {
             bestScore = score;
