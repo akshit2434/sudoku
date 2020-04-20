@@ -9,6 +9,10 @@ var avatar = {
   ai: "X"
 };
 
+var aimode = true;
+
+var mode = "ai";
+
 var level = "kid";
 
 var gameState = "paused";
@@ -47,6 +51,55 @@ $("#pro").click(function () {
   $("#kid").removeClass('selectedlvl');
   $("#pro").addClass('selectedlvl');
 });
+//GAME MODES
+$("#ai").click(function () {
+  mode = "ai";
+  $("#multiplayer").removeClass("selectedmode");
+  $("#global").removeClass("selectedmode");
+  $("#ai").addClass("selectedmode");
+  reset();
+  startGame();
+});
+$("#multiplayer").click(function () {
+  mode = "local";
+  $("#ai").removeClass("selectedmode");
+  $("#global").removeClass("selectedmode");
+  $("#multiplayer").addClass("selectedmode");
+  reset();
+  startGame();
+});
+$("#global").click(function () {
+  mode = "global";
+  $("#inprogress").fadeIn();
+  setTimeout(function () {
+    location.reload()
+  }, 3000);
+  $("#ai").removeClass("selectedmode");
+  $("#multiplayer").removeClass("selectedmode");
+  $("#global").addClass("selectedmode");
+  reset();
+  startGame();
+});
+
+$("#content #main").mousemove(function () {
+  var x = (event.pageX - $("#content table").offset().left - 2) / 510;
+  var y = (event.pageY - $("#content table").offset().top - 1) / 510;
+  // console.log(y);
+
+  x = x < 0 ? 0 : x;
+  y = y < 0 ? 0 : y;
+  x = x > 1 ? 1 : x;
+  y = y > 1 ? 1 : y;
+  x = (x * 2) - 1;
+  y = (y * 2) - 1;
+
+  $("#content table").css("transform", "rotateZ(" + (180 - (y * 20)) + "deg)");
+  $("#content table").css("transform", "rotateY(" + (180 - (x * 20)) + "deg)");
+});
+$("#content #main").mouseout(function () {
+  $("#content table").css("transform", "rotate3d(0,0,0,0deg)");
+  $("#content table").css("transform", "rotateY(180deg)");
+})
 
 function select(what) {
   avatar.ai = avatar.human;
@@ -73,6 +126,7 @@ function restart() {
   reset();
   startGame();
 }
+var prevMode = false;
 
 function reset() {
   board = [
@@ -82,17 +136,25 @@ function reset() {
   ];
   $(".cells").html('');
   gameState = "paused";
-  $(".cells").css("background-color", "black");
+  $(".cells").css("background-color", "inherit");
   disableonclick();
 }
 
 function setonclick() {
   for (let i = 0; i < 9; i++) {
     $($(".cells")[i]).click(function () {
-      if (type(avatar.human, i)) {
+      let charac = avatar.human;
+      if (mode != "ai") {
+        charac = prevMode ? avatar.ai : avatar.human;
+        prevMode = !prevMode;
+      }
+      if (type(charac, i)) {
         if (!checkWinner()) {
-          playai();
+          if (mode == "ai") {
+            playai();
+          }
         } else {
+          prevMode = false;
           gameOver();
         }
       }
@@ -114,6 +176,7 @@ function disableonclick() {
 function type(player, value) {
   if ($($(".cells")[value]).html() == '') {
     $($(".cells")[value]).html(player);
+    $($(".cells")[value]).css("color", player == avatar.human ? "#7281E8" : "#EB5349");
     board[Math.floor((value) / 3)][(value) % 3] = player;
     return true;
   } else {
@@ -122,22 +185,22 @@ function type(player, value) {
 }
 
 function typeforai(vert, horz, value) {
-  console.log(board[vert][horz]);
   board[vert][horz] = value ? value : avatar.ai;
   $($(".cells")[(vert * 3) + horz]).html(value ? value : avatar.ai);
+  $($(".cells")[(vert * 3) + horz]).css("color", "#EB5349")
 }
 
 function startGame() {
   disableonclick();
   setonclick();
   if (avatar.ai == "X" && gameState != "running") {
-    playai();
+    if (mode == "ai")
+      playai();
     gameState = "running";
   }
 }
 
 function playai() {
-  console.log("called");
   //AI's move
   let prevBoard = {};
   let bestScore = -Infinity;
@@ -147,8 +210,6 @@ function playai() {
       if (board[vert][horz] == "") {
         board[vert][horz] = avatar.ai;
         let score = minimax(board, 0, false);
-        console.log(board);
-        console.log(score);
         board[vert][horz] = "";
         if (score > bestScore) {
           bestScore = score;
@@ -318,9 +379,9 @@ function gameOver() {
   var bgcolor;
   if (gameState != "tie") {
     if (gameState.player == avatar.ai) {
-      bgcolor = "rgba(244, 67, 54, 0.53)";
+      bgcolor = "rgba(244, 67, 54, 0.13)";
     } else {
-      bgcolor = "rgba(76, 175, 80, 0.56)";
+      bgcolor = "rgba(76, 175, 80, 0.16)";
     }
     for (var i = 0; i < 3; i++) {
       let val = (gameState.index[i][0] * 3) + gameState.index[i][1];
