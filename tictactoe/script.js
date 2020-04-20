@@ -70,10 +70,7 @@ $("#multiplayer").click(function () {
 });
 $("#global").click(function () {
   mode = "global";
-  $("#inprogress").fadeIn();
-  setTimeout(function () {
-    location.reload()
-  }, 3000);
+  inprogress();
   $("#ai").removeClass("selectedmode");
   $("#multiplayer").removeClass("selectedmode");
   $("#global").addClass("selectedmode");
@@ -115,6 +112,13 @@ function select(what) {
   startGame();
 }
 
+function inprogress(){
+  $("#inprogress").slideDown();
+  setTimeout(function () {
+    $("#inprogress").fadeOut();
+    $("#ai").click()
+  }, 3000);
+}
 
 function onload() {
   reset();
