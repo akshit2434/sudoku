@@ -11,6 +11,8 @@ var avatar = {
 
 var level = "kid";
 
+var gameState = "paused";
+
 $(document).ready(onload);
 $("#play").on("click", startGame);
 $("#reset").on("click", reset);
@@ -25,16 +27,25 @@ $("#silly").click(function () {
   level = "silly";
   reset();
   startGame();
+  $("#silly").addClass('selectedlvl');
+  $("#kid").removeClass('selectedlvl');
+  $("#pro").removeClass('selectedlvl');
 });
 $("#kid").click(function () {
   level = "kid";
   reset();
   startGame();
+  $("#silly").removeClass('selectedlvl');
+  $("#kid").addClass('selectedlvl');
+  $("#pro").removeClass('selectedlvl');
 });
 $("#pro").click(function () {
   level = "pro";
   reset();
   startGame();
+  $("#silly").removeClass('selectedlvl');
+  $("#kid").removeClass('selectedlvl');
+  $("#pro").addClass('selectedlvl');
 });
 
 function select(what) {
@@ -70,6 +81,7 @@ function reset() {
     ['', '', '']
   ];
   $(".cells").html('');
+  gameState = "paused";
   $(".cells").css("background-color", "black");
   disableonclick();
 }
@@ -118,8 +130,9 @@ function typeforai(vert, horz, value) {
 function startGame() {
   disableonclick();
   setonclick();
-  if (avatar.ai == "X") {
+  if (avatar.ai == "X" && gameState != "running") {
     playai();
+    gameState = "running";
   }
 }
 

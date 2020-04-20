@@ -20,7 +20,7 @@ body {
   display: flex;
   padding-top: 10px;
   box-sizing: border-box;
-  /* justify-content: center; */
+  justify-content: space-evenly;
   flex-direction: row;
   align-items: center;
   color: white;
@@ -29,10 +29,9 @@ body {
 #options{
   display: flex;
   align-items: center;
-  justify-content: center;
-  vertical-align: middle;
+  justify-content: space-between;
   flex-direction: column;
-  /* border:5px solid yellow; */
+  height: 70vh
 }
 
 #content table td {
@@ -49,8 +48,8 @@ body {
 #content table {
   margin-top: 10px;
   border-collapse: collapse;
-  width: 25vw;
-  height: 25vw;
+  width: 40vw;
+  height: 40vw;
   margin: 0 auto;
 }
 
@@ -72,10 +71,10 @@ body {
 
 #btns {
   margin-top: 5vw;
-  width: 60vw;
+  width: 30vw;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 #main{
@@ -138,11 +137,6 @@ body {
   align-items: center;
 }
 
-.selectedlvl{
-  border-color: lightsalmon;
-  color: lightsalmon;
-}
-
 #choose {
   display: flex;
   flex-direction: row;
@@ -172,6 +166,7 @@ body {
   font-family: Tw Cen MT;
   background-color: inherit;
   color: white;
+  transition:ease all .5s;
   font-size: 3vw;
 }
 
@@ -180,6 +175,10 @@ body {
 }
 
 
+.selectedlvl{
+  border-color: lightsalmon !important;
+  color: lightsalmon !important;
+}
 
 @media screen and (max-width:600px) {
   #content table {
