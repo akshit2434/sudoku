@@ -114,8 +114,10 @@ function select(what) {
 
 function inprogress(){
   $("#inprogress").slideDown();
+  $("#content").addClass('blur');
   setTimeout(function () {
     reset();
+    $("#content").removeClass('blur');
     $("#inprogress").fadeOut();
     $("#ai").click()
   }, 3000);
@@ -198,7 +200,7 @@ function typeforai(vert, horz, value) {
 function startGame() {
   disableonclick();
   setonclick();
-  if (gameState != "running") {
+  if (avatar.ai == '✘'&&gameState != "running") {
     if (mode == "ai")
       playai();
     gameState = "running";
