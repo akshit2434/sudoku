@@ -5,8 +5,8 @@ var board = [
 ];
 
 var avatar = {
-  human: "O",
-  ai: "X"
+  human: "◯",
+  ai: "✘"
 };
 
 var aimode = true;
@@ -89,18 +89,18 @@ $("#content #main").mousemove(function () {
   y = y > 1 ? 1 : y;
   x = (x * 2) - 1;
   y = (y * 2) - 1;
-
-  $("#content table").css("transform", "rotateZ(" + (180 - (y * 20)) + "deg)");
-  $("#content table").css("transform", "rotateY(" + (180 - (x * 20)) + "deg)");
+  var z = (x+y)/2
+  $("#content table").css("transform", "rotateZ(" + (180-(y * 10)) + "deg) rotateX("+0+"deg) rotateY(" + (10-(x * 10)) + "deg)");
+  // $("#content table").css("transform", "rotateY(" + (180 - (x * 20)) + "deg)");
 });
 $("#content #main").mouseout(function () {
-  $("#content table").css("transform", "rotate3d(0,0,0,0deg)");
-  $("#content table").css("transform", "rotateY(180deg)");
+  $("#content table").css("transform", "rotateY(0deg) rotateZ(180deg)");
+  // $("#content table").css("transform", "rotateZ(180deg) rotateX(180deg)");
 })
 
 function select(what) {
   avatar.ai = avatar.human;
-  avatar.human = what;
+  avatar.human = what=='X'?"✘":'◯';
   if (what == 'X') {
     $("#X").addClass('selected');
     $("#O").removeClass('selected');
@@ -115,6 +115,7 @@ function select(what) {
 function inprogress(){
   $("#inprogress").slideDown();
   setTimeout(function () {
+    reset();
     $("#inprogress").fadeOut();
     $("#ai").click()
   }, 3000);
@@ -197,7 +198,7 @@ function typeforai(vert, horz, value) {
 function startGame() {
   disableonclick();
   setonclick();
-  if (avatar.ai == "X" && gameState != "running") {
+  if (gameState != "running") {
     if (mode == "ai")
       playai();
     gameState = "running";

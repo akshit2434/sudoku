@@ -30,6 +30,7 @@ body {
   flex-direction: row;
   align-items: center;
   color: white;
+  overflow: hidden;
 }
 
 #modes{
@@ -71,7 +72,8 @@ body {
   overflow: hidden;
   transition:all 0.1s;
   transform-style: preserve-3d;
-  transform: rotateY(180deg);
+  transform: rotateY(180deg); 
+  transform: rotateZ(180deg);
 }
 
 #content table tr:last-child td {
@@ -107,6 +109,7 @@ body {
   width: 40vw;
   height: 40vw;
   transform:rotateY(180deg);
+  transform: rotateZ(180deg);
   transform-style: preserve-3d;
 }
 
@@ -237,15 +240,32 @@ body {
   transform: translateY(-50%);
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:650px) {
   #content table {
-    margin-top: 10px;
+    /* margin-top: 10px; */
     border-collapse: collapse;
     width: 50vw;
     height: 50vw;
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    margin:0;
+    top:0;
+    left:0;
+    position: relative;
   }
 
+  #content{
+    flex-direction: column;
+    overflow: auto;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #options{
+    height:30vw;
+    width:90vw;
+  }
+  #btns{
+    width:80vw;
+  }
   #content table td {
     font-size: 10vw;
   }
